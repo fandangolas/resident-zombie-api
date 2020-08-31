@@ -1,4 +1,4 @@
-import configureContainer from "./src/common/container";
+import configureContainer from "./src/common/diContainer";
 
 const container = configureContainer();
 const app = container.resolve('app');
