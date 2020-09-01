@@ -1,13 +1,12 @@
 import { Sequelize } from "sequelize";
 
 const sequelize = ({ configs }) => {
-
   const connection = new Sequelize(
     configs.dbName,
     configs.dbUser,
     configs.dbPassword,
     {
-      dbHost: configs.dbHost,
+      host: configs.dbHost,
       dialect: 'mssql',
       pool: {
         max: 5,
