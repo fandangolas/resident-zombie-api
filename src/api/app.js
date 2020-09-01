@@ -1,10 +1,7 @@
-const app = ({
-  //db,
-  server
-}) => {
+const app = ({ db, server }) => {
   return {
     start: async () => {
-      //await db.configure();
+      await db.authenticate();
 
       server.start();
     }

@@ -2,9 +2,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 module.exports = {
-  pgsqlUser: process.env.PGSQL_USER,
-  pgsqlPassword: process.env.PGSQL_PASSWORD,
-  pgsqlBaseUrl: process.env.PGSQL_BASEURL,
-  pgsqlConnectionString: process.env.PGSQL_CONNECTIONSTRING,
+  dbName: process.env.DB,
+  dbUser: process.env.DB_USER,
+  dbPassword: process.env.DB_PASSWORD,
+  dbHost: process.env.DB_HOST,
   port: process.env.PORT
 };

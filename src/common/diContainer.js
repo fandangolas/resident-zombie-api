@@ -3,6 +3,8 @@ import app from "../api/app";
 
 import configs from "../../configs";
 
+import dbConfig from "../persistence/dbConfig";
+
 import { createContainer, asFunction, asValue } from "awilix";
 
 const configureContainer = () => {
@@ -11,7 +13,8 @@ const configureContainer = () => {
   container.register({
     app: asFunction(app).singleton(),
     configs: asValue(configs),
-    server: asFunction(server).singleton()
+    server: asFunction(server).singleton(),
+    db: asFunction(dbConfig).singleton()
   });
 
   return container;
