@@ -1,10 +1,12 @@
 import bodyParser from "body-parser";
 import express from 'express';
 
-const server = ({ configs }) => {
+const server = ({ configs, router }) => {
   const app = express();
 
   app.use(bodyParser.json());
+
+  app.use(router);
 
   return {
     start: () =>

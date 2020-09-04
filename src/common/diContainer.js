@@ -4,6 +4,7 @@ import app from "../api/app";
 import configs from "../../configs";
 
 import dbConfig from "../persistence/dbConfig";
+import router from "../interfaces/http/router";
 
 import { createContainer, asFunction, asValue } from "awilix";
 
@@ -14,7 +15,8 @@ const configureContainer = () => {
     app: asFunction(app).singleton(),
     configs: asValue(configs),
     server: asFunction(server).singleton(),
-    db: asFunction(dbConfig).singleton()
+    db: asFunction(dbConfig).singleton(),
+    router: asFunction(router).singleton()
   });
 
   return container;
