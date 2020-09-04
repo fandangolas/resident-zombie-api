@@ -16,7 +16,7 @@ const Survivor = t.struct({
     name: t.String,
     age: t.Integer,
     gender: t.String,
-    lastLocation: t.Object(Location),
+    lastLocation: Location,
     items: t.list(Item)
 });
 
