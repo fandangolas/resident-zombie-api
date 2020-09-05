@@ -7,6 +7,7 @@ import dbConfig from "./persistence/dbConfig";
 import survivorsRepository from "./persistence/repositories/survivors";
 import locationsRepository from "./persistence/repositories/locations";
 import itemsRepository from "./persistence/repositories/items";
+import survivorItemsRepository from "./persistence/repositories/survivorItems";
 
 
 import router from "./interfaces/http/router";
@@ -27,7 +28,8 @@ container.register({
   router: asFunction(router).singleton(),
   survivorsRepository: asFunction(survivorsRepository).singleton(),
   locationsRepository: asFunction(locationsRepository).singleton(),
-  itemsRepository: asFunction(itemsRepository).singleton()
+  itemsRepository: asFunction(itemsRepository).singleton(),
+  survivorItemsRepository: asFunction(survivorItemsRepository).singleton()
 });
 
 
