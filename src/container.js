@@ -1,10 +1,10 @@
-import server from "../api/server";
-import app from "../api/app";
+import server from "./api/server";
+import app from "./api/app";
 
-import configs from "../../configs";
+import configs from "../configs";
 
-import dbConfig from "../persistence/dbConfig";
-import router from "../interfaces/http/router";
+import dbConfig from "./persistence/dbConfig";
+import router from "./interfaces/http/router";
 
 import { createContainer, asFunction, asValue } from "awilix";
 
