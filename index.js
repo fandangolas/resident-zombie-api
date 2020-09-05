@@ -1,6 +1,7 @@
 import container from "./src/container";
 
 const app = container.resolve('app');
+const logger = container.resolve('logger');
 
 (async () => {
   try {
@@ -8,7 +9,7 @@ const app = container.resolve('app');
   }
 
   catch (error) {
-    console.log(error);
+    logger.fatal(error);
     process.exit();
   }
 })();

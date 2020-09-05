@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import express from 'express';
 
-const server = ({ configs, router }) => {
+const server = ({ configs, router, logger }) => {
   const app = express();
 
   app.use(bodyParser.json());
@@ -11,7 +11,7 @@ const server = ({ configs, router }) => {
   return {
     start: () =>
       app.listen(configs.port, () =>
-        console.log(`Application running on port ${configs.port}`))
+        logger.info(`Application running on port ${configs.port}`))
   };
 };
 

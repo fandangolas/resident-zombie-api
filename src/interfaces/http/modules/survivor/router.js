@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-const router = ({ survivorModule }) => {
+const router = ({ survivorModule, logger }) => {
   const router = Router();
 
   router.post('/', async (req, res) => {
@@ -11,7 +11,7 @@ const router = ({ survivorModule }) => {
     }
     
     catch (error) {
-      console.log(error);
+      logger.error(error);
     }    
   });
 

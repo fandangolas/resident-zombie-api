@@ -1,13 +1,18 @@
 import Survivor from "../../domain/survivor/";
+//import sequelize from "sequelize";
 
 const survivorModule = ({
   survivorsRepository,
   locationsRepository,
-  survivorItemsRepository
+  survivorItemsRepository,
+  logger
 }) => {
   const create = async ({ body }) => {
+    //TODO: add a transactional scope for these queries
+    //const t = await sequelize.transaction();
+
     try {
-      const { lastLocation, items, ...survivor } = Survivor(body);
+      const { lastLocation, items, ...survivor } = Survivor(body);      
 
       const location = await locationsRepository.findOrCreate(lastLocation);
 
@@ -23,7 +28,7 @@ const survivorModule = ({
     }
     
     catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 
