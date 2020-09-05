@@ -21,17 +21,19 @@ container.register({
   configs: asValue(configs),
 
   app: asFunction(app).singleton(),
+  db: asFunction(dbConfig).singleton(),
   server: asFunction(server).singleton(),
+  
   survivorModule: asFunction(survivorModule).singleton(),
 
   logger: asFunction(logger).singleton(),
-
-  db: asFunction(dbConfig).singleton(),
-  router: asFunction(router).singleton(),
+  
   survivorsRepository: asFunction(survivorsRepository).singleton(),
   locationsRepository: asFunction(locationsRepository).singleton(),
   itemsRepository: asFunction(itemsRepository).singleton(),
-  survivorItemsRepository: asFunction(survivorItemsRepository).singleton()
+  survivorItemsRepository: asFunction(survivorItemsRepository).singleton(),
+
+  router: asFunction(router).singleton()
 });
 
 

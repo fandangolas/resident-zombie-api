@@ -6,8 +6,8 @@ const survivorsRepository = ({ db }) => {
 
   const getAll = async () => await model.findAll();
 
-  const create = async (survivor) => {
-    const { dataValues } = await model.create(survivor);
+  const create = async (survivor, transaction) => {
+    const { dataValues } = await model.create(survivor, { transaction });
 
     return dataValues;
   };

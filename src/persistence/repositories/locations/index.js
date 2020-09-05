@@ -7,19 +7,19 @@ const locationsRepository = ({ db }) => {
 
   const getAll = async () => await model.findAll();
 
-  const create = async (location) => {
-    const { dataValues } = await model.create(location);
+  const create = async (location, transaction) => {
+    const { dataValues } = await model.create(location, { transaction });
 
     return dataValues;
   };
 
-  const findOrCreate = async (location) => {
+  const findOrCreate = async (location, transaction) => {
     const response = await model.findOne({
       where: { ...location }
     });
     
     if(isNil(response)) {
-      return await create(location);
+      return await create(location, transaction);
     }
 
     const { dataValues } = response;
