@@ -1,6 +1,10 @@
 import Survivor from "../../domain/survivor/";
 
-const survivorModule = ({ survivorsRepository, locationsRepository }) => {
+const survivorModule = ({
+  survivorsRepository,
+  locationsRepository,
+  survivorItemsRepository
+}) => {
   const create = async ({ body }) => {
     try {
       const { lastLocation, items, ...survivor } = Survivor(body);
@@ -12,7 +16,10 @@ const survivorModule = ({ survivorsRepository, locationsRepository }) => {
         lastLocation: location.id
       });
 
-      return createdSurvivor;
+      await survivorItemsRepository
+            .createItemsForGivenSurvivor(createdSurvivor.id, items);
+
+      return { ...createdSurvivor, items };
     }
     
     catch (error) {
