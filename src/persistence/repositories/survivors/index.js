@@ -1,18 +1,19 @@
 import Survivors from "../../models/survivors";
 import { DataTypes } from "sequelize";
+import { v4 as uuidv4 } from 'uuid';
 
 const survivorsRepository = ({ db }) => {
   const model = Survivors(db, DataTypes);
 
-  const getAll = async () => {
-    const data = await model.findAll();
+  const getAll = async () => await model.findAll();
 
-    console.log(data);
+  const create = async survivor => {
+    const { dataValues } = await model.create(survivor);
 
-    return data;
+    return dataValues;
   };
 
-  return { getAll };
+  return { getAll, create };
 };
 
 module.exports = survivorsRepository;
