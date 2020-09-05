@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-//Apparently Sequelize has a problem with MSSQL's datetime format
+//Apparently Sequelize has a problem with MSSQL's datetime format, so i've found this "solution" here.
 Sequelize.DATE.prototype._stringify = function _stringify(date, options) {
   return this._applyTimezone(date, options).format('YYYY-MM-DD HH:mm:ss.SSS');
 };
