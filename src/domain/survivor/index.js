@@ -8,7 +8,7 @@ const Location = t.struct({
 });
 
 const Item = t.struct({
-    item: t.String,
+    id: t.String,
     amount: t.Integer
 });
 
