@@ -1,5 +1,4 @@
 import Survivor from "../../domain/survivor/survivor";
-import { v4 as uuidv4 } from 'uuid';
 
 const survivorModule = ({ survivorsRepository, locationsRepository }) => {
   const create = async ({ body }) => {
@@ -7,11 +6,12 @@ const survivorModule = ({ survivorsRepository, locationsRepository }) => {
       const entity = Survivor(body);
       const { lastLocation, items, ...survivor } = entity;
 
-      const locationId = uuidv4();
+      const location = await locationsRepository.findOrCreate(lastLocation);
 
-      await locationsRepository.create({ id: locationId , ...lastLocation });
-
-      await survivorsRepository.create({ ...survivor, lastLocation: locationId });
+      await survivorsRepository.create({
+        ...survivor,
+        lastLocation: location.id
+      });
     }
     
     catch (error) {
