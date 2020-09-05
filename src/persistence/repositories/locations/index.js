@@ -7,7 +7,7 @@ const locationsRepository = ({ db }) => {
 
   const getAll = async () => await model.findAll();
 
-  const create = async location => {
+  const create = async (location) => {
     const { dataValues } = await model.create(location);
 
     return dataValues;

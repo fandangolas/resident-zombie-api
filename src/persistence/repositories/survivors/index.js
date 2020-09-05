@@ -6,7 +6,7 @@ const survivorsRepository = ({ db }) => {
 
   const getAll = async () => await model.findAll();
 
-  const create = async survivor => {
+  const create = async (survivor) => {
     const { dataValues } = await model.create(survivor);
 
     return dataValues;

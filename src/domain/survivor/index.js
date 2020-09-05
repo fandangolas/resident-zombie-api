@@ -13,11 +13,14 @@ const Item = t.struct({
 });
 
 const Survivor = t.struct({
+    id: t.maybe(t.String),
     name: t.String,
     age: t.Integer,
     gender: t.String,
     lastLocation: Location,
-    items: t.list(Item)
+    items: t.list(Item),
+    createdAt: t.maybe(t.Date),
+    updatedAt: t.maybe(t.Date)
 });
 
 export default compose(cleanData, Survivor);
