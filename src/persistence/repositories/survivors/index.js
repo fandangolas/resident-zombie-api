@@ -1,11 +1,13 @@
-import { Survivors } from "../../models/survivors";
+import Survivors from "../../models/survivors";
 import { DataTypes } from "sequelize";
 
-const usersRepository = ({ db }) => {
+const survivorsRepository = ({ db }) => {
   const model = Survivors(db, DataTypes);
 
-  const getAll = async (...args) => {
-    const data = await model.findAll(...args);
+  const getAll = async () => {
+    const data = await model.findAll();
+
+    console.log(data);
 
     return data;
   };
@@ -13,4 +15,4 @@ const usersRepository = ({ db }) => {
   return { getAll };
 };
 
-module.exports = usersRepository;
+module.exports = survivorsRepository;

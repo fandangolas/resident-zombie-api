@@ -4,22 +4,26 @@ import app from "./api/app";
 import configs from "../configs";
 
 import dbConfig from "./persistence/dbConfig";
-import usersRepository from "./persistence/repositories/survivors";
+import survivorsRepository from "./persistence/repositories/survivors";
 
 
 import router from "./interfaces/http/router";
 
 import { createContainer, asFunction, asValue } from "awilix";
+import survivorModule from "./api/survivor";
 
 const container = createContainer();
 
 container.register({
-  app: asFunction(app).singleton(),
   configs: asValue(configs),
+
+  app: asFunction(app).singleton(),
   server: asFunction(server).singleton(),
+  survivorModule: asFunction(survivorModule).singleton(),
+
   db: asFunction(dbConfig).singleton(),
   router: asFunction(router).singleton(),
-  usersRepository: asFunction(usersRepository).singleton()
+  survivorsRepository: asFunction(survivorsRepository).singleton()
 });
 
 

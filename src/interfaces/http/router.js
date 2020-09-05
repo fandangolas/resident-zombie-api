@@ -1,11 +1,11 @@
 const { Router } = require("express");
 
-import survivor from "./modules/survivor";
+import survivorRouter from "./modules/survivor/router";
 
-const router = ({}) => {
+const router = ({ survivorModule }) => {
   const apiRouter = Router();
 
-  apiRouter.use('/api/survivors', survivor().router);
+  apiRouter.use('/api/survivors', survivorRouter({ survivorModule }));
 
   return apiRouter;
 };
