@@ -3,14 +3,15 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
     age: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     gender: {
@@ -18,18 +19,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     lastLocation: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull: false,
       unique: true
     },
     createdAt: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.DATE,
+      allowNull: true
     },
     UpdatedAt: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.DATE,
+      allowNull: true
     }
+  }, {
+    timestamp: false
   });
 
   return Survivors;
