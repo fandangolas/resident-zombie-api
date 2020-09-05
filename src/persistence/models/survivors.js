@@ -27,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true
     },
-    UpdatedAt: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: true
     }
   }, {
-    timestamp: false
+    timestamps: true
   });
 
   return Survivors;
