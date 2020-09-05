@@ -8,18 +8,15 @@ import router from "./interfaces/http/router";
 
 import { createContainer, asFunction, asValue } from "awilix";
 
-const configureContainer = () => {
-  const container = createContainer();
+const container = createContainer();
 
-  container.register({
-    app: asFunction(app).singleton(),
-    configs: asValue(configs),
-    server: asFunction(server).singleton(),
-    db: asFunction(dbConfig).singleton(),
-    router: asFunction(router).singleton()
-  });
+container.register({
+  app: asFunction(app).singleton(),
+  configs: asValue(configs),
+  server: asFunction(server).singleton(),
+  db: asFunction(dbConfig).singleton(),
+  router: asFunction(router).singleton()
+});
 
-  return container;
-};
 
-export default configureContainer;
+export default container;

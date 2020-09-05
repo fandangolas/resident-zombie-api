@@ -1,6 +1,5 @@
-import configureContainer from "./src/container";
+import container from "./src/container";
 
-const container = configureContainer();
 const app = container.resolve('app');
 
 (async () => {
