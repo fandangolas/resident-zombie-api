@@ -4,6 +4,9 @@ import app from "./api/app";
 import configs from "../configs";
 
 import dbConfig from "./persistence/dbConfig";
+import usersRepository from "./persistence/repositories/survivors";
+
+
 import router from "./interfaces/http/router";
 
 import { createContainer, asFunction, asValue } from "awilix";
@@ -15,8 +18,9 @@ container.register({
   configs: asValue(configs),
   server: asFunction(server).singleton(),
   db: asFunction(dbConfig).singleton(),
-  router: asFunction(router).singleton()
+  router: asFunction(router).singleton(),
+  usersRepository: asFunction(usersRepository).singleton()
 });
 
 
-export default container;
+module.exports = container;
