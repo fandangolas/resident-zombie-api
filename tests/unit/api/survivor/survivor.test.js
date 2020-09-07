@@ -1,8 +1,8 @@
-import survivorModule from "../../../src/api/survivor";
-import locationsRepository from "../../../src/persistence/repositories/locations";
-import survivorsRepository from "../../../src/persistence/repositories/survivors";
-import survivorItemsRepository from "../../../src/persistence/repositories/survivorItems";
-import logger from "../../../src/infrastructure/log/logger";
+import survivorModule from "../../../../src/api/survivor";
+import locationsRepository from "../../../../src/persistence/repositories/locations";
+import survivorsRepository from "../../../../src/persistence/repositories/survivors";
+import survivorItemsRepository from "../../../../src/persistence/repositories/survivorItems";
+import logger from "../../../../src/infrastructure/log/logger";
 
 import SequelizeMock from "sequelize-mock";
 
