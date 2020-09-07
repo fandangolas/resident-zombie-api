@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { isEmpty } from "ramda";
 
 const router = ({ survivorModule, logger }) => {
   const router = Router();
@@ -12,7 +13,7 @@ const router = ({ survivorModule, logger }) => {
     
     catch (error) {
       logger.error(error);
-    }    
+    }
   });
 
   router.put('/:id/location', async (req, res) => {
@@ -21,7 +22,11 @@ const router = ({ survivorModule, logger }) => {
       survivorId: req.params.id
     });
 
-    return res.status(200).json(data);
+    if(!isEmpty(data)) {
+      return res.status(200).json(data);
+    }
+
+    return res.status(404).json({ error: "Survivor not registered!" });
   });
 
   return router;

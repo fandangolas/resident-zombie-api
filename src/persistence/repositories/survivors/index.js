@@ -22,9 +22,26 @@ const survivorsRepository = ({ db }) => {
 
     const { dataValues } = survivor;
     return dataValues;
-  }
+  };
 
-  return { getAll, create, findById };
+  const updateLastLocation = async (survivorId, locationId, transaction) =>
+    await model.update(
+      {
+        lastLocation: locationId
+      },
+      {
+        where: { id: survivorId }
+      },
+      {
+        transaction
+      });
+
+  return {
+    getAll,
+    create,
+    findById,
+    updateLastLocation
+  };
 };
 
 module.exports = survivorsRepository;

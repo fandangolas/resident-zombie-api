@@ -1,5 +1,6 @@
 import Survivor from "../../domain/survivor/";
 import Location from "../../domain/location/";
+import { isEmpty } from "ramda";
 
 const survivorModule = ({
   survivorsRepository,
@@ -39,15 +40,25 @@ const survivorModule = ({
 
   const updateLocation = async ({ body, survivorId }) => {
     try {
-      const location = Location(body);
+      const requestLocation = Location(body);
 
       const updatedLocation = await db.transaction(async (t) => {
         const survivor = await survivorsRepository.findById(survivorId, t);
-        //const location = await locationsRepository.findOrCreate(location, t);
+        
+        if(!isEmpty(survivor)) {
+          const { id } = await locationsRepository.findOrCreate(requestLocation, t);
+          
+          await survivorsRepository.updateLastLocation(survivorId, id, t);
+
+          const { lastLocation: oldLocation, ...survivorProps } = survivor;
+
+          return { ...survivorProps, lastLocation: locationId };
+        }
+
         return survivor;
       });
 
-      return { updatedLocation };
+      return updatedLocation;
     }
     
     catch (error) {
