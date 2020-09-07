@@ -12,7 +12,7 @@ import sinon from "sinon";
 
 
 
-describe("Survivor module testing", async function () {
+describe("Survivor creation testing", async function () {
   //mock survivor module dependencies
   var dbMock = new SequelizeMock();
 
@@ -65,7 +65,7 @@ describe("Survivor module testing", async function () {
     expect(spy.calledWithMatch(lastLocation, sinon.match.any)).to.be.true;
   });
 
-  it('should register the new survivor to database', async function () {
+  it('should create a new survivor in database', async function () {
     // Arrange
     const spy = sinon.spy(survivorsRepositorySubstitute, "create");
     sinon
