@@ -8,7 +8,7 @@ import SequelizeMock from "sequelize-mock";
 
 
 import { expect } from "chai";
-import sinon, { spy } from "sinon";
+import sinon from "sinon";
 
 
 
