@@ -1,5 +1,6 @@
 import Survivors from "../../models/survivors";
 import { DataTypes } from "sequelize";
+import { isNil } from "ramda";
 
 const survivorsRepository = ({ db }) => {
   const model = Survivors(db, DataTypes);
@@ -12,7 +13,18 @@ const survivorsRepository = ({ db }) => {
     return dataValues;
   };
 
-  return { getAll, create };
+  const findById = async (survivorId, transaction) => {
+    const survivor = await model.findByPk(survivorId, { transaction });
+
+    if(isNil(survivor)) {
+      return {};
+    }
+
+    const { dataValues } = survivor;
+    return dataValues;
+  }
+
+  return { getAll, create, findById };
 };
 
 module.exports = survivorsRepository;

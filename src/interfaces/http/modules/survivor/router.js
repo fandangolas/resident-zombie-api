@@ -15,6 +15,15 @@ const router = ({ survivorModule, logger }) => {
     }    
   });
 
+  router.put('/:id/location', async (req, res) => {
+    const data = await survivorModule.updateLocation({
+      body: req.body,
+      survivorId: req.params.id
+    });
+
+    return res.status(200).json(data);
+  });
+
   return router;
 };
 

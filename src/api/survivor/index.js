@@ -1,4 +1,5 @@
 import Survivor from "../../domain/survivor/";
+import Location from "../../domain/location/";
 
 const survivorModule = ({
   survivorsRepository,
@@ -36,7 +37,25 @@ const survivorModule = ({
     }
   };
 
-  return { create };
+  const updateLocation = async ({ body, survivorId }) => {
+    try {
+      const location = Location(body);
+
+      const updatedLocation = await db.transaction(async (t) => {
+        const survivor = await survivorsRepository.findById(survivorId, t);
+        //const location = await locationsRepository.findOrCreate(location, t);
+        return survivor;
+      });
+
+      return { updatedLocation };
+    }
+    
+    catch (error) {
+      logger.error(error);
+    }    
+  };
+
+  return { create, updateLocation };
 };
 
 export default survivorModule;
