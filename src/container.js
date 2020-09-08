@@ -13,6 +13,7 @@ import itemsRepository from "./persistence/repositories/items";
 import survivorItemsRepository from "./persistence/repositories/survivorItems";
 
 import router from "./interfaces/http/router";
+import errorHandling from "./interfaces/http/middlewares/errorHandling";
 
 import { createContainer, asFunction, asValue } from "awilix";
 
@@ -33,7 +34,8 @@ container.register({
   itemsRepository: asFunction(itemsRepository).singleton(),
   survivorItemsRepository: asFunction(survivorItemsRepository).singleton(),
 
-  router: asFunction(router).singleton()
+  router: asFunction(router).singleton(),
+  errorHandling: asFunction(errorHandling)
 });
 
 

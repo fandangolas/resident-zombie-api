@@ -1,10 +1,12 @@
 import bodyParser from "body-parser";
 import express from 'express';
 
-const server = ({ configs, router, logger }) => {
+const server = ({ configs, errorHandling, router, logger }) => {
   const app = express();
 
   app.use(bodyParser.json());
+
+  app.use('/', errorHandling.middleware);
 
   app.use(router);
 
