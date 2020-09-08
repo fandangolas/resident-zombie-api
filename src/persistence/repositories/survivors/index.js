@@ -13,8 +13,8 @@ const survivorsRepository = ({ db }) => {
     return dataValues;
   };
 
-  const findById = async (survivorId, transaction) => {
-    const survivor = await model.findByPk(survivorId, { transaction });
+  const findById = async (survivorId) => {
+    const survivor = await model.findByPk(survivorId);
 
     if(isNil(survivor)) {
       return {};
@@ -24,17 +24,10 @@ const survivorsRepository = ({ db }) => {
     return dataValues;
   };
 
-  const updateLastLocation = async (survivorId, locationId, transaction) =>
+  const updateLastLocation = async (survivorId, locationId) =>
     await model.update(
-      {
-        lastLocation: locationId
-      },
-      {
-        where: { id: survivorId }
-      },
-      {
-        transaction
-      });
+      { lastLocation: locationId },
+      { where: { id: survivorId } });
 
   return {
     getAll,

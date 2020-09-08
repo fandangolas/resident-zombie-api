@@ -42,23 +42,19 @@ const survivorModule = ({
     try {
       const requestLocation = Location(body);
 
-      const updatedLocation = await db.transaction(async (t) => {
-        const survivor = await survivorsRepository.findById(survivorId, t);
+      const survivor = await survivorsRepository.findById(survivorId);
         
-        if(!isEmpty(survivor)) {
-          const { id } = await locationsRepository.findOrCreate(requestLocation, t);
+      if(!isEmpty(survivor)) {
+        const { id } = await locationsRepository.findOrCreate(requestLocation, null);
           
-          await survivorsRepository.updateLastLocation(survivorId, id, t);
+        await survivorsRepository.updateLastLocation(survivorId, id);
 
-          const { lastLocation: oldLocation, ...survivorProps } = survivor;
+        const { lastLocation: oldLocation, ...survivorProps } = survivor;
 
-          return { ...survivorProps, lastLocation: locationId };
-        }
+        return { ...survivorProps, lastLocation: id };
+      }
 
-        return survivor;
-      });
-
-      return updatedLocation;
+      return survivor;
     }
     
     catch (error) {
