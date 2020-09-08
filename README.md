@@ -2,6 +2,13 @@
 ----
   _A system in the form of a RESTful API created to help us humans to survive on the Twitter Virus's pandemic._
 
+***How to run it***
+
+1. _You have to create a .env file containing the variables the same as the .env.example file._
+2. _You need to install de application's dependencies, run `npm install` on your console.
+3. _Run it using `npm run dev` (with nodemon) or `npm start`.
+
+
 ***[FEATURE] Survivor creation***
 
 * **URL**
